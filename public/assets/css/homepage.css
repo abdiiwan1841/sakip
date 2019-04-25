@@ -1,0 +1,125 @@
+#chart {
+	margin: 2em auto;
+	list-style: none;
+	padding: 0;
+	max-width: 300px;
+	position: relative;
+	top: 2em;
+}
+
+#chart li {
+	display: block;	
+}
+
+#chart .block {
+	width: 150px;
+	margin-bottom: 7em;
+	height: 150px;
+	/*border: 1px solid;*/
+	-webkit-transform: rotate( 45deg );
+	-ms-transform: rotate( 45deg );
+		transform: rotate( 45deg );
+	position: relative;
+	background-color: #4CAF50;	
+}
+
+#chart .block-content {
+	-webkit-transform: rotate( -45deg );
+	-ms-transform: rotate( -45deg );
+		transform: rotate( -45deg );
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	margin-top: -1.5em;
+	color: #ffffff;
+}
+
+#chart .next-icon {
+	width: 32px;
+	height: 32px;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAA3NCSVQICAjb4U/g AAAACXBIWXMAAARuAAAEbgHQo7JoAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2Nh cGUub3Jnm+48GgAAAB5QTFRF////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA how4rQAAAAl0Uk5TAAwREiowWMPOLoJhMgAAAEhJREFUKFNjYBhCgCUNDgLAAoyV M6FghgFEiThMoBmqB6YEpgCuBKYApgShAKoEoQCiBFkBWAmyApASVAVAJagKgEoU GIYaAADIMSWmfFk62AAAAABJRU5ErkJggg==') no-repeat 50% 0;
+	display: block;
+	position: absolute;
+	left: 25%;
+	margin-left: -16px;
+	
+}
+
+#chart .icon-1 {
+	top: 145px;
+}
+
+#chart .icon-2 {
+	top: 425px;
+}
+
+#chart .icon-3 {
+	top: 625px;
+}
+
+#chart .icon-4 {
+	top: 825px;
+}
+
+#chart .icon-5 {
+	top: 995px;
+}
+
+#chart .icon-6 {
+	top: 1273px;
+}
+
+#chart .icon-7 {
+	top: 1474px;
+}
+
+#chart .icon-8 {
+	top: 1674px;
+}
+
+#chart .icon-9 {
+	top: 1874px;
+}
+
+#chart .icon-10 {
+	top: 2074px;
+}
+
+#chart .icon-11 {
+	top: 2274px;
+}
+
+#chart .persegi-content {
+	width: 200px;
+	height: 100px;
+	background: #337ab7;
+	margin-left: -25px;
+	padding-top: 2em;
+	position: absolute;
+}
+
+#chart .persegi{
+	text-align: center;
+	color: #ffffff;	
+	height: 200px;
+}
+
+.blue {
+    background-color: #3F51B5;
+}
+
+.red {
+    background-color: #F44336;
+}
+
+.green {
+    background-color: #8BC34A;
+}
+
+.vertical-line{
+      width: 1px; /* Line width */
+      background-color: black; /* Line color */
+    margin-left: 100px;
+    margin-top: 32px;      
+}
