@@ -46,7 +46,7 @@
                                 {{-- {{ Form::text('email',null, array('class' => 'form-control', 'placeholder' => 'Email','disabled' => 'disabled')) }} --}}
 								
 								@if(empty($id_program))
-                                <select class="form-control select2me" name="id_program" id="id_program">
+                                <select class="form-control select2" name="id_program" id="id_program">
                                     <option value='0' selected>- Pilih Program -</option>
 
 
@@ -76,7 +76,7 @@
                             <div class="col-sm-5">
                                 {{-- {{ Form::text('email',null, array('class' => 'form-control', 'placeholder' => 'Email','disabled' => 'disabled')) }} --}}
 							@if(empty($id_kegiatan))
-                                <select class="form-control select2me" name="id_kegiatan" id="id_kegiatan">
+                                <select class="form-control select2" name="id_kegiatan" id="id_kegiatan">
                                     <option value='0' selected>- Pilih Program Dahulu -</option>
                                 </select>
 							@else
@@ -96,7 +96,7 @@
                             <div class="col-sm-5">
                                 {{-- {{ Form::text('keluaran',null, array('class' => 'form-control', 'placeholder' => 'Keluaran','disabled' => 'disabled')) }}--}}
 							@if(empty($id_sub))
-								<select class="form-control select2me" name="keluaran" id="keluaran">
+								<select class="form-control select2" name="keluaran" id="keluaran">
                                 </select>
 							@else
 								<input class="form-control" name="keluaran" value="{{$id_sub}}" type="hidden">
@@ -130,7 +130,7 @@
                             <div class="col-sm-5">
                                 {{-- {{ Form::text('email',null, array('class' => 'form-control', 'placeholder' => 'Email','disabled' => 'disabled')) }} --}}
 
-                                <select class="form-control select2me" name="akun" id="akun">
+                                <select class="form-control select2" name="akun" id="akun">
                                     <option value='0' selected>- Pilih Akun -</option>
 
 
@@ -243,6 +243,13 @@
 </section>
 
 <script type="text/javascript">
+ $(document).ready(function() {
+      $(".select2").select2();
+      $(window).resize(function() {
+    $('.select2').css('width', "100%");
+});
+
+    });
     $(function () {
         var input = document.getElementById('alokasi_anggaran');
         input.addEventListener('keyup', function (e) {

@@ -54,7 +54,7 @@
          <div class="form-group">
             {!! Form::label('akun', 'Akun', ['class' => 'col-md-3 control-label']) !!}
             <div class="col-md-7">
-              <select class="form-control select2me" name="akun" id="akun" required="">
+              <select class="form-control select2" name="akun" id="akun" required="">
                 @if(isset($programkerja->id_akun))
                 @foreach($akun as $akuns)
                 @if($programkerja->id_akun==$akuns->id_akun)
@@ -75,7 +75,7 @@
     <div class="form-group">
         {!! Form::label('program', 'Program', ['class' => 'col-md-3 control-label']) !!}
         <div class="col-md-7">
-          <select class="form-control select2me" name="program" id="program" onchange="getkegiatan()" required="">
+          <select class="form-control select2" name="program" id="program" onchange="getkegiatan()" required="">
             @if(isset($programkerja->id_program))
 
             @foreach($program as $prog)
@@ -102,7 +102,7 @@
         @foreach($kegiatan as $keg)
           
             @if($keg->id_kegiatan==$programkerja->id_kegiatan)
-              <select class="form-control select2me" name="kegiatan" id="id_kegiatan" >
+              <select class="form-control select2" name="kegiatan" id="id_kegiatan" >
             <option value="<?php echo $keg->id_kegiatan; ?>" selected="selected"><?php echo $keg->nama_kegiatan; ?></option>
              </select>
             @endif
@@ -110,7 +110,7 @@
             
         @else
         <div id="statekegiatan">
-            <select class="form-control select2me" name="kegiatan"
+            <select class="form-control select2" name="kegiatan"
             id="id_kegiatan" >
             <option value='0' selected>
                 -Pilih Kegiatan-
@@ -138,6 +138,13 @@
 
 
 <script type="text/javascript">
+ $(document).ready(function() {
+      $(".select2").select2();
+      $(window).resize(function() {
+    $('.select2').css('width', "100%");
+});
+
+    });
   function getkegiatan() {
     var strURL = "{{url('getkegiatan')}}";
     var id_program = document.getElementById("program").value;
@@ -149,7 +156,7 @@
         req.onreadystatechange = function () {
             if (req.readyState == 4) {
                 if (req.status == 200) {
-                    document.getElementById('statekegiatan').innerHTML = req.responseText;
+                    document.getElementById('id_kegiatan').innerHTML = req.responseText;
                 } else {
                     alert("There was a problem while using XMLHTTP:\n" + req.statusText);
                 }
