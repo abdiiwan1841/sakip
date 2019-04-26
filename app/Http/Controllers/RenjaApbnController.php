@@ -28,8 +28,8 @@ class RenjaApbnController extends Controller
 
     public function index()
     {
-        $apbn = DB::select(" SELECT * from renbin where sumber_anggaran = 'APBN' AND id_user_pengirim = ".Auth::user()->id." order by id_renbin desc ");
-        $pnbp = DB::select(" SELECT * from renbin where sumber_anggaran = 'PNBP' AND id_user_pengirim = ".Auth::user()->id." order by id_renbin desc");
+        $apbn = DB::select(" SELECT * from renbin where sumber_anggaran = 'APBN' AND id_satker = ".Auth::user()->id_satker." order by id_renbin desc ");
+        $pnbp = DB::select(" SELECT * from renbin where sumber_anggaran = 'PNBP' AND id_satker = ".Auth::user()->id_satker." order by id_renbin desc");
         $noa = 1;
         $nob = 1;
         return view('renja.index', compact('apbn','pnbp','noa','nob'));
@@ -125,12 +125,14 @@ public function prarenaku2()
 
 public function tambahrencana(Request $request)
 {
+	
     $id_pengirim = Auth::user()->id;
+	$isat = Auth::user()->id_satker;
     $countiprod = count($request->id_program);   
     $countidrenbin = count($request->id_shop);  
 
-    $insert = DB::select("insert into renbin (tanggal,tahun_anggaran,kode_rencana_kebutuhan,sumber_anggaran,id_user_pengirim) 
-        values ('".$request->tanggal."','".$request->tahun_perencanaan."','".$request->kode."','".$request->sumber_anggaran."','".$id_pengirim."')");
+    $insert = DB::select("insert into renbin (tanggal,tahun_anggaran,kode_rencana_kebutuhan,sumber_anggaran,id_user_pengirim,id_satker) 
+        values ('".$request->tanggal."','".$request->tahun_perencanaan."','".$request->kode."','".$request->sumber_anggaran."','".$id_pengirim."','".$isat."')");
 
 
     $cekidrencana = DB::select("SELECT * from renbin where tanggal = '".$request->tanggal."' and tahun_anggaran = '".$request->tahun_perencanaan."' and sumber_anggaran ='".$request->sumber_anggaran."' and kode_rencana_kebutuhan = '".$request->kode."' ");

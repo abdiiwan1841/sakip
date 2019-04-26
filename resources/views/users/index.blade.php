@@ -131,7 +131,7 @@ if(!empty($res->name)){
                         {!!Form::label('satker','Satker',['class' => 'col-sm-2 col-form-label '])!!}
                         <div class="col-sm-4">
 
-                          <select class="form-control" name="id_satker">
+                          <select class="form-control select2" name="id_satker">
 						  <option value="0">-- Pilih Satker --</option>
                             @foreach($satker as $res)
 
@@ -212,6 +212,13 @@ if(!empty($res->name)){
         </section>
       </section>
       <script type="text/javascript">
+	  $(document).ready(function() {
+      $(".select2").select2();
+      $(window).resize(function() {
+    $('.select2').css('width', "100%");
+});
+
+    });
         $('#example1').DataTable();
       </script>
 

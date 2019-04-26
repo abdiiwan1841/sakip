@@ -30,7 +30,7 @@
             <h2 class="panel-title">Form Rencana Kegiatan (APBN)</h2>
         </header>
         <div class="panel-body">
-
+<?php // echo $url;die(); ?>
             {{Form::open(array('url' => $url,'method' => 'post'))}}
             {{csrf_field()}}
 

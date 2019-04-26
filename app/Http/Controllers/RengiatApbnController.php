@@ -36,9 +36,9 @@ class RengiatApbnController extends Controller
         $apbn = DB::table('renbin')
                 ->join('master_jawaban_renbin', 'renbin.id_renbin', '=', 'master_jawaban_renbin.id_renbin')
                 ->where('renbin.sumber_anggaran', 'APBN')
-                ->where('renbin.status', '5')
+                ->where('renbin.status', '4')
                 ->where('master_jawaban_renbin._status', NULL)
-                ->where('renbin.id_user_pengirim', Auth::user()->id)
+                ->where('renbin.id_satker', Auth::user()->id_satker)
                 ->orderBy('renbin.id_renbin', 'DESC')
                 ->get();
         $noa = 1;
@@ -49,7 +49,7 @@ class RengiatApbnController extends Controller
 
     public function getApbn()
     {
-        $pesan = DB::select("SELECT  ROW_NUMBER() OVER (ORDER BY rencana_kegiatan.id_perencanaan_kegiatan DESC) AS Row, rencana_kegiatan.* FROM rencana_kegiatan WHERE status = '2' AND id_user = ".Auth::user()->id." order by rencana_kegiatan.id_perencanaan_kegiatan desc");
+        $pesan = DB::select("SELECT  ROW_NUMBER() OVER (ORDER BY rencana_kegiatan.id_perencanaan_kegiatan DESC) AS Row, rencana_kegiatan.* FROM rencana_kegiatan WHERE status = '2' AND id_satker = ".Auth::user()->id_satker." order by rencana_kegiatan.id_perencanaan_kegiatan desc");
 
 
         return DataTables::of($pesan)
@@ -144,6 +144,7 @@ class RengiatApbnController extends Controller
     public function store(Request $request)
     {
         $id_pengirim = Auth::user()->id;
+		$id_satker = Auth::user()->id_satker;
         $date = date('Y-m-d H:i:s'); //waktu nya belom ditambah 7
 
         $tglz = explode("-", $request->tglren);
@@ -159,6 +160,7 @@ class RengiatApbnController extends Controller
             'alokasi_anggaran_fisik' => intval(preg_replace('/,.*|[^0-9]/', '',$request->alokasi_anggaran_fisik)),
             'alokasi_anggaran_biaya_administrasi' => intval(preg_replace('/,.*|[^0-9]/', '',$request->alokasi_anggaran_biaya_administrasi)),
             'status' => 2,
+			'id_satker' => $id_satker,
             'id_user' => $user_id,
             'akun' => $request->akun,
             'penyaluran_anggaran' => $request->penyalurananggaran,

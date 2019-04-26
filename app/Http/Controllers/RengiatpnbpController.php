@@ -32,7 +32,7 @@ class RengiatpnbpController extends Controller
         $kegiatan_list = Kegiatan::join('master_program', 'master_program.id_program', '=', 'master_kegiatan.id_program')->get();
 
 
-        $pnbp = DB::select(" select * from renbin join master_jawaban_renbin on renbin.id_renbin = master_jawaban_renbin.id_renbin where renbin.sumber_anggaran = 'PNBP' and renbin.status = '5' and master_jawaban_renbin._status is null and renbin.id_user_pengirim = ".Auth::user()->id." order by renbin.id_renbin desc ");
+        $pnbp = DB::select(" select * from renbin join master_jawaban_renbin on renbin.id_renbin = master_jawaban_renbin.id_renbin where renbin.sumber_anggaran = 'PNBP' and renbin.status = '4' and master_jawaban_renbin._status is null and renbin.id_satker = ".Auth::user()->id_satker." order by renbin.id_renbin desc ");
         $noa = 1;
 
         return view('rengiat.pnbp.index', compact('kegiatan','pnbp','noa','kegiatan_list'));
@@ -138,6 +138,7 @@ class RengiatpnbpController extends Controller
     public function store(Request $request)
     {
         $id_pengirim = Auth::user()->id;
+		$id_satker = Auth::user()->id_satker;
         $date = date('Y-m-d H:i:s'); //waktu nya belom ditambah 7
 
         $tglz = explode("-", $request->tglren);
@@ -153,6 +154,7 @@ class RengiatpnbpController extends Controller
             'alokasi_anggaran_fisik' => intval(preg_replace('/,.*|[^0-9]/', '',$request->alokasi_anggaran_fisik)),
             'alokasi_anggaran_biaya_administrasi' => intval(preg_replace('/,.*|[^0-9]/', '',$request->alokasi_anggaran_biaya_administrasi)),
             'status' => 1,
+			'id_satker' => $id_satker,
             'id_user' => $user_id,
             'akun' => $request->akun,
             'penyaluran_anggaran' => $request->penyalurananggaran,

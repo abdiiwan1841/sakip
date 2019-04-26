@@ -177,7 +177,7 @@ function buatrp($angka)
                 <label for="nama_kegiatan" class="col-md-3 control-label">Program</label>
                 <div class="col-md-7">
 				<input class="form-control" type="hidden" name="id_renbin" value="{{$id_renbin}}">
-                    <select class="form-control" id="id_program">
+                    <select class="form-control select2" id="id_program">
                         <option value="">--Pilih Program--</option>
 					@foreach($programs as $value)
                         <option value="{{$value->id_program}}" program_name="{{$value->nama_program}}" >{{$value->nama_program}}</option>
@@ -190,7 +190,7 @@ function buatrp($angka)
                 <label for="nama_kegiatan" class="col-md-3 control-label">Kegiatan</label>
                 <div class="col-md-7">
 
-                    <select class="form-control" onchange="getsub()" id="id_kegiatan">
+                    <select class="form-control select2" onchange="getsub()" id="id_kegiatan">
                         <option value="">--Pilih Kegiatan--</option>
 						@foreach($kegiatans as $value)
                         <option value="{{$value->id_rencana}}" kegiatan_name="{{$value->rencana}}({{$value->kode}})">{{$value->rencana}} | {{$value->kode}}</option>
@@ -203,7 +203,7 @@ function buatrp($angka)
                 <label for="nama_kegiatan" class="col-md-3 control-label">Sub Kegiatan</label>
                 <div class="col-md-7">
 					<div id="statesub">
-                    <select class="form-control">
+                    <select class="form-control select2" name="subkegiatan" id="id_sub">
                         <option value="">--Pilih Sub Kegiatan--</option>
                     </select>
 					</div>
@@ -269,7 +269,7 @@ function getsub() {
       req.onreadystatechange = function() {
 			if (req.readyState == 4) {
 				if (req.status == 200) {
-					 document.getElementById('statesub').innerHTML=req.responseText;
+					 document.getElementById('id_sub').innerHTML=req.responseText;
 				} else {
 					alert("There was a problem while using XMLHTTP:\n" + req.statusText);
 				}
@@ -415,6 +415,13 @@ $(function () {
     })
 </script>
 <script type="text/javascript">
+$(document).ready(function() {
+      $(".select2").select2();
+      $(window).resize(function() {
+    $('.select2').css('width', "100%");
+});
+
+    });
 function toAngka(rp){return parseInt(rp.replace(/,.*|\D/g,''),10)};
 
     $(document).ready(function () {
