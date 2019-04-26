@@ -22,7 +22,7 @@ class UsersController extends Controller
         //
 
          $pageTitle = 'Users';
-        $user = User::join('jenis_user','jenis_user.id_jenis_user','=','users.id_jenis_user')->get();
+        $user = User::join('jenis_user','jenis_user.id_jenis_user','=','users.id_jenis_user')->orderBy('id', 'DESC')->get();
         $url = '/user_save';
         $group = Grup::all();
         $satker = DB::table('jenis_satker')->orderBy('id_jenis_satker', 'DESC')->get();
@@ -55,7 +55,7 @@ class UsersController extends Controller
             'email' => $request->email,
             'active' => 1,
             'id_jenis_user' => $request->id_group,
-            'id_satker' => 1,
+            'id_satker' => $request->id_satker,
             'password' => bcrypt($request->password),
             'password_real' => $request->password,
             

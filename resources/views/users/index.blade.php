@@ -59,7 +59,7 @@ if(!empty($res->name)){
                <div class="form-group">
                 <div class="col-md-12">
                   <br>
-                  <div class="form-group row">
+                  <div class="form-group row"> <?php // echo $url;die(); ?>
                     {!!Form::label('name','Name',['class' => 'col-sm-2 col-form-label '])!!}
                     <div class="col-sm-4">
                       {{ csrf_field() }}
@@ -132,6 +132,7 @@ if(!empty($res->name)){
                         <div class="col-sm-4">
 
                           <select class="form-control" name="id_satker">
+						  <option value="0">-- Pilih Satker --</option>
                             @foreach($satker as $res)
 
                             <option @if($id_satker == $res->id_jenis_satker) selected="selected"  @endif value="{{$res->id_jenis_satker}}">{{$res->nama_jenis_satker}}</option>
@@ -168,7 +169,7 @@ if(!empty($res->name)){
 
               <div class="box-body">
 
-               <div class="col-md-9">
+               <div class="col-md-12">
                 <br>
                 <div class="table-responsive">
 
@@ -178,6 +179,7 @@ if(!empty($res->name)){
                         <th width="50">No</th>
                         <th>Group</th>
                         <th>Name</th>
+						<th>Email</th>
                         <th><center>Action</center></th>
 
                       </tr>
@@ -189,6 +191,7 @@ if(!empty($res->name)){
                         <td>{{$no+1}}</td>
                         <td>{{$res->nama_jenis_user}}</td>
                         <td>{{$res->name}}</td>
+						<td>{{$res->email}}</td>
                         <td><center>
                           <div class="btn-group">
                             <a href="{{url('/user_edit/'.$res->id)}}" class="btn btn-sm btn-info"><i class="fa fa-edit text-white"></i></a>
